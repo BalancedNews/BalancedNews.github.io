@@ -7,14 +7,14 @@
 $from = 'Demo contact form <demo@domain.com>';
 
 // an email address that will receive the email with the output of the form
-$sendTo = 'Demo contact form <yourEmail@example.com>';
+$sendTo = 'Demo contact form <spang.hba2021@ivey.ca>';
 
 // subject of the email
 $subject = 'New message from contact form';
 
 // form field names and their translations.
 // array variable name => Text to appear in the email
-$fields = array('name' => 'Name', 'email' => 'Email', 'subject' => 'Subject', 'message' => 'Message'); 
+$fields = array('name' => 'Name', 'email' => 'Email', 'subject' => 'Subject', 'message' => 'Message');
 
 // message that will be displayed when everything is OK :)
 $okMessage = 'Thank You! your message has been sent.';
@@ -33,11 +33,11 @@ try
 {
 
     if(count($_POST) == 0) throw new \Exception('Form is empty');
-            
+
     $emailText = "You have a new message from your contact form\n";
 
     foreach ($_POST as $key => $value) {
-        // If the field exists in the $fields array, include it in the email 
+        // If the field exists in the $fields array, include it in the email
         if (isset($fields[$key])) {
             $emailText .= "$fields[$key]: $value\n";
         }
@@ -49,7 +49,7 @@ try
         'Reply-To: ' . $from,
         'Return-Path: ' . $from,
     );
-    
+
     // Send email
     mail($sendTo, $subject, $emailText, implode("\n", $headers));
 
